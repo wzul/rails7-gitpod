@@ -3,8 +3,14 @@
 # and commit this file to your remote git repository to share the goodness with others.
 
 tasks:
-  - init: rvm install "ruby-3.1.2"
-  - init: bin/setup
+  - name: setting environment and db
+    init: > 
+      rvm install "ruby-3.1.2" &&
+      gp sync-done rvm
+  - name: default task by gitpod
+    init: >
+      gp sync-await rvm
+      bin/setup
     command: bin/rails server
 
 
